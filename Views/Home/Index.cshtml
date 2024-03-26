@@ -1,8 +1,36 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Bem vindo!</h1>
+    <h1 class="display-4">Faça login:</h1>
+    <p>
+        <a asp-action="Create"> Criar novo usuário ou faça logon</a>
+    </p>
+    <table class="trable">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                <td>
+                    <a asp-action="Editar" asp-route-id="@item.Id">Editar</a>
+                    <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a>
+                    <a asp-action="Deletar" asp-route-id="@item.Id">Deletar</a>
+                </td>
+            </tr>
+        }
+    </table>
+
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
