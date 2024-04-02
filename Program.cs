@@ -1,3 +1,6 @@
+using Macro_Model.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace Macro_Model
 {
     public class Program
@@ -8,7 +11,11 @@ namespace Macro_Model
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
             builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnetion")));
 
             var app = builder.Build();
 
@@ -28,10 +35,12 @@ namespace Macro_Model
             app.UseAuthorization();
 
             app.MapControllerRoute(
+            
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+          
 
-            app.Run();
+			app.Run();
         }
     }
 }
