@@ -8,23 +8,23 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace MacroModel.Migrations
+namespace Macro_Model.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240404021705_M01-AddTablePessoaEProdutos")]
-    partial class M01AddTablePessoaEProdutos
+    [Migration("20240408213436_M01-CadastroPessoas")]
+    partial class M01CadastroPessoas
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0")
+                .HasAnnotation("ProductVersion", "7.0.17")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Macro_Model.Models.Pessoa", b =>
+            modelBuilder.Entity("Macro_Model.Models.Cadastro", b =>
                 {
                     b.Property<string>("Cpf")
                         .HasMaxLength(11)
@@ -46,32 +46,20 @@ namespace MacroModel.Migrations
 
                     b.HasKey("Cpf");
 
-                    b.ToTable("Pessoas");
+                    b.ToTable("Cadastro");
                 });
 
-            modelBuilder.Entity("Macro_Model.Models.Produto", b =>
+            modelBuilder.Entity("Macro_Model.Models.Login", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<string>("Senha")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Nutricional")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                    b.HasKey("Email");
 
-                    b.Property<string>("Restricao")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Produtos");
+                    b.ToTable("Login");
                 });
 #pragma warning restore 612, 618
         }

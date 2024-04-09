@@ -2,16 +2,16 @@
 
 #nullable disable
 
-namespace MacroModel.Migrations
+namespace Macro_Model.Migrations
 {
     /// <inheritdoc />
-    public partial class M01AddTablePessoaEProdutos : Migration
+    public partial class M01CadastroPessoas : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Pessoas",
+                name: "Cadastro",
                 columns: table => new
                 {
                     Cpf = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
@@ -21,21 +21,19 @@ namespace MacroModel.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pessoas", x => x.Cpf);
+                    table.PrimaryKey("PK_Cadastro", x => x.Cpf);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Produtos",
+                name: "Login",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Nome = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Nutricional = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Restricao = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Senha = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Produtos", x => x.Id);
+                    table.PrimaryKey("PK_Login", x => x.Email);
                 });
         }
 
@@ -43,10 +41,10 @@ namespace MacroModel.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Pessoas");
+                name: "Cadastro");
 
             migrationBuilder.DropTable(
-                name: "Produtos");
+                name: "Login");
         }
     }
 }

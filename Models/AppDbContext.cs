@@ -6,9 +6,9 @@ namespace Macro_Model.Models
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<Pessoa> Pessoa { get; set; }
-        public DbSet<Produto> Produto { get; set; }
+        public DbSet<Cadastro> Cadastro { get; set; }
+		public DbSet<Login> Login { get; set; }
 
-        public DbSet<Login> Login { get; set; }
-    }
+
+	}
 }
